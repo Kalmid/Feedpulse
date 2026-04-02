@@ -9,7 +9,9 @@ dotenv.config();
 const app = express();
 
 // middleware
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000" 
+}));
 app.use(express.json());
 
 app.use("/api/feedback", feedbackRoutes);
@@ -19,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-// connect DB
+// connect DataBase
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected Successfully");
